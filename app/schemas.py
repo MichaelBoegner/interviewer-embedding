@@ -1,8 +1,13 @@
 from pydantic import BaseModel
 from typing import List
 
-class TextRequest(BaseModel):
+class EmbedChunk(BaseModel):
+    topic_number: int
+    question_number: int
     text: str
 
+class BatchRequest(BaseModel):
+    chunks: List[EmbedChunk]
+
 class EmbeddingResponse(BaseModel):
-    embedding: List[float]
+    embeddings: List[List[float]]
